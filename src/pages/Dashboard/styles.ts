@@ -12,7 +12,6 @@ export const Container = styled.View`
 export const Header = styled.View`
   padding: 60px 24px 60px;
   background: #c72828;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -30,7 +29,6 @@ export const Title = styled.Text`
   font-weight: 600;
   font-size: 20px;
   line-height: 30px;
-
   color: #3d3d4d;
   padding: 0 20px;
 `;
@@ -55,9 +53,7 @@ export const CategoryItem = styled.TouchableOpacity<CategoryItemProps>`
   margin-right: 8px;
   align-items: center;
   justify-content: space-between;
-
   text-align: center;
-
   ${props =>
     props.isSelected &&
     css`
@@ -71,9 +67,7 @@ export const CategoryItemTitle = styled.Text`
   font-weight: bold;
   font-size: 15px;
   line-height: 15px;
-
   text-align: center;
-
   color: #6c6c80;
 `;
 
@@ -84,18 +78,17 @@ export const FoodsContainer = styled.View`
 export const FoodList = styled.View`
   flex: 1;
   padding: 0 20px;
-
   margin-top: 16px;
 `;
 
 export const Food = styled.TouchableOpacity`
+  flex: 1;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
-
   background: #f0f0f5;
   border-radius: 8px;
-
   margin-bottom: 16px;
 `;
 
@@ -104,13 +97,11 @@ export const FoodImageContainer = styled.View`
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   padding: 16px;
-
   height: 100%;
 `;
 
 export const FoodContent = styled.View`
   flex: 1;
-
   padding: 16px;
 `;
 
@@ -120,7 +111,6 @@ export const FoodTitle = styled.Text`
   font-weight: 600;
   font-size: 15px;
   line-height: 22px;
-
   color: #3d3d4d;
 `;
 export const FoodDescription = styled.Text`
@@ -129,9 +119,7 @@ export const FoodDescription = styled.Text`
   font-weight: normal;
   font-size: 10px;
   line-height: 16px;
-
   margin-top: 6px;
-
   color: #3d3d4d;
 `;
 
@@ -141,10 +129,7 @@ export const FoodPricing = styled.Text`
   font-weight: normal;
   font-size: 18px;
   line-height: 21px;
-
   margin-top: 8px;
-
   font-weight: 600;
-
   color: #39b100;
 `;

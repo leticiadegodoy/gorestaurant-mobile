@@ -27,6 +27,8 @@ import {
   FoodDescription,
   FoodPricing,
 } from './styles';
+import { format } from 'prettier';
+import Routes from 'src/routes';
 
 interface Food {
   id: number;
@@ -54,13 +56,12 @@ const Dashboard: React.FC = () => {
   const navigation = useNavigation();
 
   async function handleNavigate(id: number): Promise<void> {
-    navigation.navigate('FoodDetails', {
-      id,
-    });
+    // Navigate do ProductDetails page
+    navigation.navigate(`FoodDetails`, { id });
   }
 
   useEffect(() => {
-    async function loadDashboard(): Promise<void> {
+    async function loadFoods(): Promise<void> {
       const foodsResponse = await api.get('/foods', {
         params: {
           category_like: selectedCategory,
@@ -68,21 +69,32 @@ const Dashboard: React.FC = () => {
         },
       });
 
-      const categoriesResponse = await api.get('/categories');
-
-      setCategories(categoriesResponse.data);
-      setFoods(
-        foodsResponse.data.map((food: Food) => ({
-          ...food,
-          formattedPrice: formatValue(food.price),
-        })),
-      );
+      if (foodsResponse.status === 200) {
+        setFoods(
+          foodsResponse.data.map((food: Food) => ({
+            ...food,
+            formattedPrice: formatValue(food.price),
+          })),
+        );
+      }
     }
 
-    loadDashboard();
+    loadFoods();
   }, [selectedCategory, searchValue]);
 
+  useEffect(() => {
+    async function loadCategories(): Promise<void> {
+      const response = await api.get('/categories');
+      if (response.status === 200) {
+        setCategories(response.data);
+      }
+    }
+
+    loadCategories();
+  }, []);
+
   function handleSelectCategory(id: number): void {
+    // Select / deselect category
     if (selectedCategory === id) {
       setSelectedCategory(undefined);
     } else {
